@@ -20,9 +20,36 @@ fn fib(num: u32) -> u32 {
 
 fn main() {
 
-    for num in (0..10) {
-        println!("{}", fib(num));
+    for num in 0..100 {
+        println!("{} - {}", num, fib(num));
     }
 
     println!("Hello, world!");
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn zero(){
+        assert_eq!(fib(0), 0);
+    }
+
+    #[test]
+    fn one(){
+        assert_eq!(fib(1), 1);
+    }
+
+    #[test]
+    fn ten(){
+        assert_eq!(fib(10), 55);
+    }
+
+    #[test]
+    #[should_panic]
+    fn overflow(){
+        fib(48);
+    }
+
 }
